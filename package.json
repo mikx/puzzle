@@ -1,0 +1,23 @@
+{
+  "name": "Puzzle",
+  "version": "1.0.0",
+  "description": "Puzzle game",
+  "scripts": {
+    "start": "NODE_ENV=production PORT=8080 node ./server.js"
+  },
+  "keywords": [
+    "ExpressJS",
+    "ReactJS",
+    "Redux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Unknown",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.16.4"
+  },
+  "dependencies": {}
+}
