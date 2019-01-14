@@ -17,7 +17,8 @@
   "author": "Unknown",
   "license": "MIT",
   "devDependencies": {
-    "express": "^4.16.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
