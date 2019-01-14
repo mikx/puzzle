@@ -1,5 +1,5 @@
 /* global ReactDOM */
 
-import Hello from 'hello';
+import Board from 'board';
 
-ReactDOM.render(<Hello />, document.getElementById('root'));
+ReactDOM.render(<Board />, document.getElementById('root'));
