@@ -1,28 +1,24 @@
 /* global ReactDnD, PropTypes */
 
-import { ITEM } from './itemTypes';
+import { ITEM } from './items';
 
-const Target = ({ connectDropTarget, highlighted, shape }) => (
+const Target = ({ connectDropTarget, highlighted, id, opacity }) => (
   connectDropTarget(
-    <div
-      className={`board__targets__target board__targets__target--${shape}`}
-      style={{ backgroundColor: highlighted ? 'black' : 'gray' }}
-    />
+    <div className='board_target' style={ {opacity: 0.9 * opacity } } />
   )
 );
 
 Target.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   highlighted: PropTypes.bool.isRequired,
-  shape: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  opacity: PropTypes.number.isRequired,
 }
 
 const target = {
   drop(props) {
-    const { shape } = props;
-    return ({
-      shape,
-    });
+    const targetKey = props.id;
+    return ({ targetKey });
   }
 }
 

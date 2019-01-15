@@ -1,49 +1,38 @@
 /* global React, ReactDnD, ReactDnDHTML5Backend */
 
-import Drop   from './drop';
 import Source from './source';
 import Target from './target';
 
 class Board extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.handleDrop = this.handleDrop.bind(this);
+    super(props)
+    this.image = 'https://cdn.pbrd.co/images/HWu1T1v.jpg'
+    this.doDrop = (o) => this.handleDrop(o)
     this.state = {
-      drops: [],
-    };
+      targets: Array(8).fill(1),
+    }
   }
 
-  handleDrop(color, shape) {
-    const { drops } = this.state;
-    const nextDrops = [...drops, {
-      color,
-      shape,
-    }];
-    this.setState({ drops: nextDrops, });
+  handleDrop({sourceKey, targetKey}) {
+    const { targets } = this.state
+    const next = targets.slice()
+    next[targetKey] = 0
+    this.setState({ targets: next })
   }
 
   render() {
-    const { drops } = this.state;
+    const { drops, targets } = this.state;
     return (
       <div id="board">
-        <div id="board__sources">
-          <Source color="red" onDrop={this.handleDrop} />
-          <Source color="green" onDrop={this.handleDrop} />
-          <Source color="blue" onDrop={this.handleDrop} />
+        <div id='board_target_container'
+          style={{
+            backgroundImage: `url(${this.image})`
+          }}>
+          {targets.map((e,i) => <Target key={i} id={i} opacity={e} shape="circle" />)}
         </div>
-        <div id="board__targets">
-          <Target shape="circle" />
-          <Target shape="square" />
-        </div>
-        <div id="board__drops">
-          {drops.map((drop, i) => (
-            <Drop
-              color={drop.color}
-              key={i}
-              shape={drop.shape}
-            />
-          ))}
+        <div id="board_source_container">
+          <Source color="blue" id={99} onDrop={this.doDrop} />
         </div>
       </div>
     );

@@ -1,11 +1,11 @@
 /* global ReactDnD, PropTypes */
 
-import { ITEM } from 'itemTypes'
+import { ITEM } from 'items'
 
-const Source = ({ color, connectDragSource, isDragging }) => (
+const Source = ({ color, connectDragSource, id, isDragging }) => (
   connectDragSource(
     <div
-     className="board__sources__source"
+     className='board_source'
      style={{
        backgroundColor: color,
        opacity: isDragging ? 0.25 : 1,
@@ -17,24 +17,21 @@ const Source = ({ color, connectDragSource, isDragging }) => (
 Source.propTypes = {
   color: PropTypes.string.isRequired,
   connectDragSource: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   isDragging: PropTypes.bool.isRequired,
 }
 
 const source = {
   beginDrag(props) {
-    const { color } = props;
-    return ({
-      color,
-    });
+    const sourceKey = props.id;
+    return ({ sourceKey });
   },
   endDrag(props, monitor) {
-    if (!monitor.didDrop()) {
-      return;
-    }
+    if (!monitor.didDrop()) { return; }
     const { onDrop } = props;
-    const { color } = monitor.getItem();
-    const { shape } = monitor.getDropResult();
-    onDrop(color, shape);
+    const { sourceKey }  = monitor.getItem();
+    const { targetKey }  = monitor.getDropResult();
+    onDrop({sourceKey, targetKey});
   },
 };
 
