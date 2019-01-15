@@ -2,12 +2,12 @@
 
 import { ITEM } from 'items'
 
-const Source = ({ color, connectDragSource, id, isDragging }) => (
+const Source = ({ connectDragSource, image, id, isDragging }) => (
   connectDragSource(
     <div
      className='board_source'
      style={{
-       backgroundColor: color,
+       backgroundImage: `url(${image})`,
        opacity: isDragging ? 0.25 : 1,
       }}
     />
@@ -15,7 +15,7 @@ const Source = ({ color, connectDragSource, id, isDragging }) => (
 );
 
 Source.propTypes = {
-  color: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   isDragging: PropTypes.bool.isRequired,
