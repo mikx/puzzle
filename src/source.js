@@ -2,25 +2,32 @@
 
 import { ITEM } from 'items'
 
-const Source = ({ connectDragSource, image, id, isDragging }) => {
-  const x = (id % 4) * -200
-  const y = Math.trunc(id / 4) * -200
+const Source = ({ connectDragSource, image, id, done, isDragging }) => {
   return connectDragSource(
     <div
      className='board_source'
-     style={{
-       backgroundImage: `url(${image})`,
-       backgroundPosition: `${x} ${y}`,
-       opacity: isDragging ? 0.25 : 1,
-      }}
+     style={makeStyle(image, id, done, isDragging)}
     />
   )
 }
 
+const makeStyle = (image, id, done, isDragging) => {
+  if (!done) {
+    const x = (id % 4) * -200
+    const y = Math.trunc(id / 4) * -200
+    return ({
+      backgroundImage: `url(${image})`,
+      backgroundPosition: `${x} ${y}`,
+      opacity: isDragging ? 0.25 : 1,
+    })
+  } else return ({})
+}
+
 Source.propTypes = {
-  image: PropTypes.string.isRequired,
   connectDragSource: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  done: PropTypes.bool.isRequired,
   isDragging: PropTypes.bool.isRequired,
 }
 

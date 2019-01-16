@@ -13,7 +13,8 @@ class Board extends React.Component {
     this.state = {
       image: this.image,
       targets: Array(8).fill(1),
-      tile: this.random.next().value
+      tile: this.random.next().value,
+      done: false
     }
   }
 
@@ -36,7 +37,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const { image, tile } = this.state;
+    const { image, tile, done } = this.state;
     return (
       <div id="board">
         <div id='board_target_container'
@@ -46,7 +47,7 @@ class Board extends React.Component {
           {this.createContent(this.state)}
         </div>
         <div id="board_source_container">
-          <Source image={image} id={tile} onDrop={this.doDrop} />
+          <Source image={image} id={tile} done={done} onDrop={this.doDrop} />
         </div>
       </div>
     );
