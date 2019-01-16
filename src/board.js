@@ -18,11 +18,15 @@ class Board extends React.Component {
   }
 
   handleDrop({sourceKey, targetKey}) {
+    // check if source matches target
+    if (sourceKey != targetKey) return;
     const { targets } = this.state
+    const next = this.random.next().value
     targets[targetKey] = 0
     this.setState({
       targets: targets,
-      tile: this.random.next().value
+      tile: next,
+      done: next === undefined
     })
   }
 

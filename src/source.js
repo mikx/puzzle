@@ -31,10 +31,10 @@ const source = {
   },
   endDrag(props, monitor) {
     if (!monitor.didDrop()) { return; }
-    const { onDrop } = props;
-    const { sourceKey }  = monitor.getItem();
-    const { targetKey }  = monitor.getDropResult();
-    onDrop({sourceKey, targetKey});
+    const { onDrop } = props
+    const { sourceKey }  = monitor.getItem()
+    const { targetKey }  = monitor.getDropResult()
+    onDrop({sourceKey, targetKey})
   },
 };
 
