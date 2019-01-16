@@ -25,20 +25,25 @@ class Board extends React.Component {
     targets[targetKey] = 0
     this.setState({
       targets: targets,
-      tile: next,
+      tile: next || 0,
       done: next === undefined
     })
   }
 
+  createContent({targets, done}) {
+    if (done) return (<div id='board_congrats'>Congratulations!</div>)
+    else return (targets.map((e,i) => <Target key={i} id={i} opacity={e} />))
+  }
+
   render() {
-    const { image, targets, tile } = this.state;
+    const { image, tile } = this.state;
     return (
       <div id="board">
         <div id='board_target_container'
           style={{
             backgroundImage: `url(${this.image})`
           }}>
-          {targets.map((e,i) => <Target key={i} id={i} opacity={e} shape="circle" />)}
+          {this.createContent(this.state)}
         </div>
         <div id="board_source_container">
           <Source image={image} id={tile} onDrop={this.doDrop} />
