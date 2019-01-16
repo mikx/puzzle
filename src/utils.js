@@ -1,6 +1,6 @@
 
 /*
-  Rendomize the array
+  Rendomize the array 073fe2e4d0732aaffef1250322dfecf9816acc3d
 */
 function doShuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;

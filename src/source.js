@@ -2,17 +2,20 @@
 
 import { ITEM } from 'items'
 
-const Source = ({ connectDragSource, image, id, isDragging }) => (
-  connectDragSource(
+const Source = ({ connectDragSource, image, id, isDragging }) => {
+  const x = (id % 4) * -200
+  const y = Math.trunc(id / 4) * -200
+  return connectDragSource(
     <div
      className='board_source'
      style={{
        backgroundImage: `url(${image})`,
+       backgroundPosition: `${x} ${y}`,
        opacity: isDragging ? 0.25 : 1,
       }}
     />
   )
-);
+}
 
 Source.propTypes = {
   image: PropTypes.string.isRequired,
